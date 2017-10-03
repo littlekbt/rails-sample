@@ -11,8 +11,7 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - echo `which docker`
-      - docker run --rm --privileged -v $(which docker):/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock littlekbt/docker sh -c 'docker-compose build && docker-compose run web bundle exec rails db:create && docker-compose run web bundle exec rails test'
+      - docker run --rm --privileged -v /usr/local/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock littlekbt/docker sh -c 'docker-compose build && docker-compose run web bundle exec rails db:create && docker-compose run web bundle exec rails test'
   post_build:
     commands:
       - echo Build completed on `date`
