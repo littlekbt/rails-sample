@@ -1,0 +1,22 @@
+Copy
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Nothing to do in the install phase...
+      - sudo apt-get update
+      - sudo apt-get -y install nodejs
+      - sudo apt-get -y install npm
+      - gem install bundler
+      - bundle install
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - bundle exec rails test 
+  post_build:
+    commands:
+      - echo Build completed on `date`
