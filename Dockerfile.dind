@@ -1,4 +1,4 @@
-FROM docker:latest
+FROM docker:dind
 
 ENV GLIBC 2.23-r3
 
