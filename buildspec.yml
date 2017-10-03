@@ -4,7 +4,11 @@ phases:
   install:
     commands:
       - echo Nothing to do in the install phase...
-      - sudo apt-get update
+      - sudo apt-get remove docker-engine-cs
+      - curl -s 'https://sks-keyservers.net/pks/lookup?op=get&search=0xee6d536cf7dc86e2d7d56f59a178ac6c6238f52e' | sudo apt-key add --import
+      - sudo apt-get update && sudo apt-get install apt-transport-https
+      - sudo apt-get install -y linux-image-extra-virtual
+      - echo "deb https://packages.docker.com/1.12/apt/repo ubuntu-trusty main" | sudo tee /etc/apt/sources.list.d/docker.list
       - sudo apt-get upgrade docker-engine
       - curl -L "https://github.com/docker/compose/releases/download/1.16.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
   pre_build:
